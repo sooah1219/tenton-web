@@ -132,10 +132,6 @@ db
 
 # Installation
 
-Clone the repository
-
-git clone https://github.com/yourusername/tenton-v2.git
-
 Install dependencies
 
 npm install
