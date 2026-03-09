@@ -1,0 +1,26 @@
+@config "../tailwind.config.ts";
+@import "tailwindcss";
+
+:root {
+  --background: #FEFBF8;
+  /* your new background */
+  --foreground: #1A1A1A;
+}
+
+body {
+  color: var(--foreground);
+  font-family: var(--font-dm-sans);
+}
+
+/* font utility helpers */
+.font-averia {
+  font-family: var(--font-averia), serif;
+}
+
+.font-averia-serif {
+  font-family: var(--font-averia-serif), serif;
+}
+
+.font-averia-sans {
+  font-family: var(--font-averia-sans), sans-serif;
+}
