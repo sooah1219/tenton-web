@@ -1,18 +1,19 @@
 "use client";
 
+import { cldImage } from "@/lib/cloudinary";
 import Image from "next/image";
 
 type Item = { name: string; img: string };
 
 const items: Item[] = [
-  { name: "Original Ramen", img: "/ramen/original.png" },
-  { name: "Spicy Miso Ramen", img: "/ramen/spicymiso.png" },
-  { name: "Trio Katsu", img: "/katsu/trio.png" },
-  { name: "Cheese Katsu", img: "/katsu/cheesekatsu.png" },
-  { name: "Curry Katsu", img: "/katsu/currykatsu.png" },
-  { name: "Black Ramen", img: "/ramen/black.png" },
-  { name: "Beef Short Ribs", img: "/katsu/beefshortrib.png" },
-  { name: "Curry Katsu Udon", img: "/ramen/curryudon.png" },
+  { name: "Original Ramen", img: "original_ramen_cru6kh" },
+  { name: "Spicy Miso Ramen", img: "spicy_miso_ramen_ivxdy2" },
+  { name: "Katsu Trio Set", img: "trio_katsu_rgle8e" },
+  { name: "Cheese Katsu", img: "cheese_katsu_bc2sam" },
+  { name: "Curry Katsu", img: "curry_katsu_hjfr9n" },
+  { name: "Black Ramen", img: "black_ramen_b1h6fd" },
+  { name: "Beef Short Ribs", img: "beef_short_rib_ghqweu" },
+  { name: "Pork Gyoza", img: "gyoza_ucmtoi" },
 ];
 
 export default function AutoFoodCarousel() {
@@ -40,7 +41,7 @@ export default function AutoFoodCarousel() {
             >
               <div className="relative h-[120px] w-full">
                 <Image
-                  src={it.img}
+                  src={cldImage(it.img)}
                   alt={it.name}
                   fill
                   className="object-contain"
