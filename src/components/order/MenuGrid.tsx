@@ -1,5 +1,6 @@
 "use client";
 
+import { cldImage } from "@/lib/cloudinary";
 import type { MenuItem } from "@/types/menu";
 import { Plus } from "lucide-react";
 import Image from "next/image";
@@ -34,7 +35,7 @@ export default function MenuGrid({
             <div className="aspect-[4/3] flex items-center justify-center">
               {it.imageUrl ? (
                 <Image
-                  src={it.imageUrl}
+                  src={cldImage(it.imageUrl)}
                   alt={it.name}
                   width={400}
                   height={300}
@@ -94,7 +95,7 @@ export default function MenuGrid({
                 <div className="aspect-[4/3] flex items-center justify-center">
                   {it.imageUrl ? (
                     <Image
-                      src={it.imageUrl}
+                      src={cldImage(it.imageUrl)}
                       alt={it.name}
                       width={400}
                       height={300}

@@ -1,5 +1,6 @@
 "use client";
 
+import { cldImage } from "@/lib/cloudinary";
 import Image from "next/image";
 import { useMemo } from "react";
 
@@ -66,7 +67,7 @@ export default function OrderSummaryCard({
                   <div className="h-12 w-12 rounded-lg overflow-hidden bg-black/5 shrink-0">
                     {l.item.imageUrl ? (
                       <Image
-                        src={l.item.imageUrl}
+                        src={cldImage(l.item.imageUrl)}
                         alt={l.item.name}
                         width={96}
                         height={96}

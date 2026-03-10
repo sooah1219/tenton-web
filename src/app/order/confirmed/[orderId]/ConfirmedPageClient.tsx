@@ -1,5 +1,6 @@
 "use client";
 
+import { cldImage } from "@/lib/cloudinary";
 import type { OrderDTO } from "@/types/order";
 import { Check } from "lucide-react";
 import Image from "next/image";
@@ -102,7 +103,7 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                         <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-black/5">
                           {li.itemImageUrlSnapshot ? (
                             <Image
-                              src={li.itemImageUrlSnapshot}
+                              src={cldImage(li.itemImageUrlSnapshot)}
                               alt={li.itemNameSnapshot}
                               fill
                               className="object-cover"

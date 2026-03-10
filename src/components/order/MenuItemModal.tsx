@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/CtaButton";
+import { cldImage } from "@/lib/cloudinary";
 import { Check } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
@@ -25,14 +26,14 @@ export const PROTEINS: UiOption[] = [
     name: "Chashu",
     desc: "(Pork Slice)",
     priceDeltaCents: 0,
-    imageUrl: "/toppings/chashu.png",
+    imageUrl: "chashu_gvv6jw",
   },
   {
     id: "protein_karaage",
     name: "Karaage",
     desc: "(Deep Fried Chicken)",
     priceDeltaCents: 0,
-    imageUrl: "/toppings/karaage.png",
+    imageUrl: "karaage_hnhaw1",
   },
 ];
 
@@ -41,13 +42,13 @@ export const NOODLES: UiOption[] = [
     id: "noodle_thin",
     name: "Thin Noodle",
     priceDeltaCents: 0,
-    imageUrl: "/toppings/thinnoodle.png",
+    imageUrl: "thin_noodle_fcwlv3",
   },
   {
     id: "noodle_regular",
     name: "Regular Noodle",
     priceDeltaCents: 0,
-    imageUrl: "/toppings/noodle.png",
+    imageUrl: "noodle_waniwl",
   },
 ];
 
@@ -56,61 +57,61 @@ export const TOPPINGS: UiOption[] = [
     id: "top_chashu",
     name: "Chashu",
     priceDeltaCents: 400,
-    imageUrl: "/toppings/chashu.png",
+    imageUrl: "chashu_gvv6jw",
   },
   {
     id: "top_karaage",
     name: "Karaage",
     priceDeltaCents: 400,
-    imageUrl: "/toppings/karaage.png",
+    imageUrl: "karaage_hnhaw1",
   },
   {
     id: "top_egg",
     name: "Egg",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/egg.png",
+    imageUrl: "egg_adhdad",
   },
   {
     id: "top_beansprout",
     name: "Beansprout",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/beansprout.png",
+    imageUrl: "beansprout_smo0zk",
   },
   {
     id: "top_greenonion",
     name: "Greenonion",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/greenonion.png",
+    imageUrl: "greenonion_xmi2rs",
   },
   {
     id: "top_broccoli",
     name: "Broccoli",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/broccoli.png",
+    imageUrl: "broccoli_ino37g",
   },
   {
     id: "top_corn",
     name: "Corn",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/corn.png",
+    imageUrl: "corn_vif0kk",
   },
   {
     id: "top_fishcake",
     name: "Fishcake",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/fishcake.png",
+    imageUrl: "fishcake_yhqla1",
   },
   {
     id: "top_mushroom",
     name: "Mushroom",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/mushroom.png",
+    imageUrl: "mushroom_lqltnf",
   },
   {
     id: "top_seaweed",
     name: "Seaweed",
     priceDeltaCents: 300,
-    imageUrl: "/toppings/seaweed.png",
+    imageUrl: "seaweed_vcpuhk",
   },
 ];
 
@@ -223,7 +224,7 @@ function MenuItemModalInner({
               <div className="relative w-60 h-44 overflow-hidden">
                 {item.imageUrl ? (
                   <Image
-                    src={item.imageUrl}
+                    src={cldImage(item.imageUrl)}
                     alt={item.name}
                     fill
                     className="object-cover"
@@ -266,7 +267,7 @@ function MenuItemModalInner({
                           >
                             <div className="mx-auto relative h-30 w-30 hover:scale-120">
                               <Image
-                                src={p.imageUrl}
+                                src={cldImage(p.imageUrl)}
                                 alt={p.name}
                                 fill
                                 className="object-contain cursor-pointer"
@@ -320,7 +321,7 @@ function MenuItemModalInner({
                           >
                             <div className="mx-auto relative h-30 w-30 hover:scale-120">
                               <Image
-                                src={n.imageUrl}
+                                src={cldImage(n.imageUrl)}
                                 alt={n.name}
                                 fill
                                 className="object-contain cursor-pointer"
@@ -365,7 +366,7 @@ function MenuItemModalInner({
                           >
                             <div className="mx-auto relative h-20 w-20 overflow-hidden transition hover:scale-120 cursor-pointer">
                               <Image
-                                src={t.imageUrl}
+                                src={cldImage(t.imageUrl)}
                                 alt={t.name}
                                 fill
                                 className="object-contain"
