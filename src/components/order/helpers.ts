@@ -1,4 +1,4 @@
-import { NOODLES, PROTEINS, TOPPINGS, type ItemConfig } from "./MenuItemModal";
+import type { ItemConfig } from "./MenuItemModal";
 
 export function moneyFromCents(cents: number) {
   const n = cents / 100;
@@ -16,34 +16,31 @@ export function configKey(itemId: string, cfg: ItemConfig) {
   return `${itemId}|${JSON.stringify(cfg)}`;
 }
 
-function optionNameById(id: string, list: { id: string; name: string }[]) {
-  return list.find((x) => x.id === id)?.name ?? "";
-}
-
-function toppingsSummary(ids: string[]) {
-  const nameMap = new Map(TOPPINGS.map((t) => [t.id, t.name]));
-  return ids.map((id) => nameMap.get(id) ?? "").filter(Boolean);
-}
-
 export function lineExtraPriceCents(cfg: ItemConfig) {
-  const priceMap = new Map(TOPPINGS.map((t) => [t.id, t.priceDeltaCents]));
+  const selectedOptionPriceMap = cfg.selectedOptionPriceMap ?? {};
   const list = cfg.toppings ?? [];
+
   return list.reduce(
-    (sum, t) => sum + (priceMap.get(t.optionId) ?? 0) * (t.qty ?? 1),
+    (sum, t) => sum + (selectedOptionPriceMap[t.optionId] ?? 0) * (t.qty ?? 1),
     0
   );
 }
 
 export function lineSummary(cfg: ItemConfig) {
+  const selectedOptionNames = cfg.selectedOptionNames ?? {};
+
   const protein = cfg.proteinOptionId
-    ? optionNameById(cfg.proteinOptionId, PROTEINS)
-    : "";
-  const noodle = cfg.noodleOptionId
-    ? optionNameById(cfg.noodleOptionId, NOODLES)
+    ? selectedOptionNames[cfg.proteinOptionId] ?? ""
     : "";
 
-  const toppingIds = (cfg.toppings ?? []).map((t) => t.optionId);
-  const tops = toppingsSummary(toppingIds).map((t) => `+${t}`);
+  const noodle = cfg.noodleOptionId
+    ? selectedOptionNames[cfg.noodleOptionId] ?? ""
+    : "";
+
+  const tops = (cfg.toppings ?? [])
+    .map((t) => selectedOptionNames[t.optionId] ?? "")
+    .filter(Boolean)
+    .map((name) => `+${name}`);
 
   return [protein, noodle, ...tops].filter(Boolean).join(" , ");
 }

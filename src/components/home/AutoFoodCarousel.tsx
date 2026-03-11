@@ -20,26 +20,32 @@ export default function AutoFoodCarousel() {
   const loop = [...items, ...items];
 
   return (
-    <section className="w-full bg-tenton-bg py-10">
-      <h1 className="text-center font-averia-sans text-tenton-brown text-[clamp(20px,4vw,32px)] mb-6">
-        Menu Highlight
-      </h1>
+    <section className="w-full pt-4 pb-10 max-w-[1700px] mx-auto">
+      {/* Title */}
+      <div className="mb-1 flex items-center justify-center gap-3 px-5">
+        <div className="h-px w-full max-w-[200px] bg-[#d8ccc3]" />
+        <h2 className="shrink-0 font-averia-serif text-[18px] leading-none text-tenton-brown text-center">
+          Popular Menu
+        </h2>
+        <div className="h-px w-full max-w-[200px] bg-[#d8ccc3]" />
+      </div>
 
-      <div className="w-full px-4 overflow-hidden">
+      {/* Carousel */}
+      <div className="w-full px-4 overflow-hidden bg-white mx-auto">
         <div
           className="flex gap-3"
           style={{
             width: "max-content",
-            animation: "tentonScrollX 50s linear infinite",
+            animation: "tentonScrollX 60s linear infinite",
             willChange: "transform",
           }}
         >
           {loop.map((it, idx) => (
             <article
               key={`${it.name}-${idx}`}
-              className="shrink-0 w-[clamp(140px,36vw,190px)] rounded-2xl bg-white border border-tenton-brown/10 shadow-sm p-3"
+              className="shrink-0 w-[clamp(140px,36vw,190px)] rounded-2xl p-2"
             >
-              <div className="relative h-[120px] w-full">
+              <div className="relative h-[100px] w-full">
                 <Image
                   src={cldImage(it.img)}
                   alt={it.name}
@@ -47,7 +53,8 @@ export default function AutoFoodCarousel() {
                   className="object-contain"
                 />
               </div>
-              <div className="mt-2 text-center text-tenton-brown text-[13px] sm:text-[14px]">
+
+              <div className="text-center text-tenton-brown pt-1 text-[13px] sm:text-[14px]">
                 {it.name}
               </div>
             </article>
@@ -55,7 +62,6 @@ export default function AutoFoodCarousel() {
         </div>
       </div>
 
-      {/* keyframes (styled-jsx global style) */}
       <style jsx global>{`
         @keyframes tentonScrollX {
           from {
@@ -63,11 +69,6 @@ export default function AutoFoodCarousel() {
           }
           to {
             transform: translateX(-50%);
-          }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .no-motion {
-            animation: none !important;
           }
         }
       `}</style>

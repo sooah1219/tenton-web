@@ -1,22 +1,19 @@
 import type { Activatable, Currency, ID, Sortable, Timestamped } from "./menu";
 
-export type OptionGroupKind = "protein" | "noodle" | "topping";
+export type OptionGroupKind = "protein" | "noodle" | "topping" | "custom";
 export type OptionSelection = "single" | "multi";
 
 export type OptionGroup = Timestamped &
   Sortable &
   Activatable & {
     id: ID;
-
-    kind: OptionGroupKind; // protein/noodle/topping
+    kind: OptionGroupKind;
     title: string;
-    step: 1 | 2 | 3;
-
-    selection: OptionSelection; // single/multi
+    step: number;
+    selection: OptionSelection;
     required: boolean;
-
-    minSelected: number; // 0 or 1
-    maxSelected: number; // 1 or N
+    minSelected: number;
+    maxSelected: number;
   };
 
 export type Option = Timestamped &
@@ -24,14 +21,11 @@ export type Option = Timestamped &
   Activatable & {
     id: ID;
     groupId: ID;
-
     name: string;
     description?: string | null;
-
     priceDeltaCents: number;
     currency: Currency;
     imageUrl?: string | null;
-
     maxQty?: number | null;
     defaultQty?: number | null;
   };
@@ -41,7 +35,6 @@ export type MenuItemOptionGroup = Timestamped &
     id: ID;
     menuItemId: ID;
     groupId: ID;
-
     requiredOverride?: boolean | null;
     minSelectedOverride?: number | null;
     maxSelectedOverride?: number | null;
@@ -58,14 +51,31 @@ export type RamenSelection = {
   noodleOptionId: ID;
   toppings: { optionId: ID; qty: number }[];
   note?: string;
+  selectedOptionNames?: Record<string, string>;
+  selectedOptionPriceMap?: Record<string, number>;
+};
+
+export type MenuOptionGroupDTO = {
+  id: ID;
+  title: string;
+  required: boolean;
+  minSelected: number;
+  maxSelected: number;
+  sortOrder: number;
+  options: {
+    id: ID;
+    groupId: ID;
+    name: string;
+    description?: string | null;
+    priceDeltaCents: number;
+    imageUrl?: string | null;
+    maxQty: number;
+    defaultQty: number;
+    sortOrder: number;
+  }[];
 };
 
 export type RamenConfigDTO = {
   menuItemId: ID;
-  groups: {
-    protein: { group: OptionGroup; options: Option[] };
-    noodle: { group: OptionGroup; options: Option[] };
-    topping: { group: OptionGroup; options: Option[] };
-  };
-  defaults?: Partial<RamenSelection>;
+  optionGroups: MenuOptionGroupDTO[];
 };

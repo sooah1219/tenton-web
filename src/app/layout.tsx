@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dmSans.variable} ${averiaSerif.variable} ${averia.variable} ${averiaSans.variable} font-body bg-tenton-bg text-tenton-black`}
+        className={`${dmSans.variable} ${averiaSerif.variable} ${averia.variable} ${averiaSans.variable} font-body text-tenton-black`}
       >
         <NavBar />
         {children}

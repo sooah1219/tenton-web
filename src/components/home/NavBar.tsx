@@ -4,7 +4,6 @@ import CallIcon from "@/components/icons/Call.svg";
 import CartIcon from "@/components/icons/Cart.svg";
 import Image from "next/image";
 import Link from "next/link";
-import TopBar from "./topBar";
 
 export default function NavBar() {
   return (
@@ -17,8 +16,11 @@ export default function NavBar() {
           px-4 sm:px-6 lg:px-10 xl:px-12 2xl:px-14
         "
       >
-        <Link href="/" className="flex items-center gap-2 sm:gap-3">
-          <div className="relative h-[clamp(36px,3vw,56px)] w-[clamp(30px,2.2vw,44px)]">
+        <Link
+          href="/"
+          className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 w-full sm:w-auto"
+        >
+          <div className="relative h-[clamp(36px,3vw,56px)] w-[clamp(30px,2.2vw,44px)] ml-4">
             <Image
               src="/logo.png"
               alt="Tenton logo"
@@ -27,16 +29,29 @@ export default function NavBar() {
             />
           </div>
 
+          {/* Mobile text */}
           <span
             className="
-              font-averia font-bold text-tenton-brown whitespace-nowrap
-              text-[clamp(15px,1.45vw,22px)]
-            "
+      sm:hidden
+      font-averia-serif  text-tenton-brown
+      text-[30px]
+    "
+          >
+            Tenton
+          </span>
+
+          {/* Desktop text */}
+          <span
+            className="
+      hidden sm:inline
+      font-averia font-bold text-tenton-brown whitespace-nowrap
+      text-[clamp(15px,1.45vw,22px)]
+    "
           >
             Tenton Ramen <span className="text-tenton-red">N</span> Tonkatsu
           </span>
         </Link>
-        <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
+        <div className="flex items-center gap-1 lg:gap-4">
           <Link
             href="tel:+1-604-912-0288"
             className="
@@ -71,7 +86,7 @@ export default function NavBar() {
           </Link>
         </div>
       </div>
-      <TopBar />
+      {/* <TopBar /> */}
     </header>
   );
 }

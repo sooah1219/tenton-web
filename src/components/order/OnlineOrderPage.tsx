@@ -13,6 +13,7 @@ import { configKey, lineExtraPriceCents } from "./helpers";
 
 import { getCategories, getMenuItems } from "@/lib/api/menu";
 import type { Category, MenuItem } from "@/types/menu";
+import TopBar from "../home/topBar";
 
 export type CartLine = {
   key: string;
@@ -239,8 +240,9 @@ export default function OnlineOrderPage() {
 
   return (
     <div className="min-h-screen bg-tenton-bg">
+      <TopBar />
       <main className="mx-auto max-w-6xl p-4">
-        <h1 className="font-averia-serif text-center text-3xl lg:text-5xl lg:pt-5 text-tenton-brown">
+        <h1 className="font-averia-serif text-center text-3xl lg:text-5xl lg:py-6 text-tenton-brown">
           Online Order
         </h1>
 

@@ -45,89 +45,92 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
 
   return (
     <div className="min-h-screen bg-[#fbfaf8]">
-      <div className="px-4 py-10">
+      <div className="px-3 py-5 sm:px-4 sm:py-10">
         <div className="mx-auto max-w-3xl">
-          <div className="rounded-xl bg-white border border-black/10 shadow-sm">
-            <div className="px-6 pt-6 pb-4 text-center border-b border-black/10">
-              <div className="inline-flex items-center gap-2 text-tenton-red font-semibold text-[26px]">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-tenton-red">
-                  <Check size={14} className="text-white stroke-[3]" />
+          <div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm">
+            <div className="border-b border-black/10 px-4 pb-4 pt-5 text-center sm:px-6 sm:pt-6">
+              <div className="inline-flex items-center justify-center gap-2 text-tenton-red">
+                <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-tenton-red sm:h-6 sm:w-6">
+                  <Check
+                    size={12}
+                    className="stroke-[3] text-white sm:size-[14px]"
+                  />
                 </span>
-                <span>Your Order is Confirmed</span>
+                <span className="text-base font-semibold leading-tight sm:text-2xl md:text-[26px]">
+                  Your Order is Confirmed
+                </span>
               </div>
             </div>
 
-            <div className="p-6 flex flex-col gap-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div className="flex justify-between sm:block">
-                  <div className="text-black/50">Customer</div>
-                  <div className="font-medium text-black/80">
+            <div className="flex flex-col gap-6 p-4 sm:p-6">
+              <div className="grid grid-cols-1 gap-4 text-sm sm:grid-cols-2">
+                <div className="flex items-start justify-between gap-4 sm:block">
+                  <div className="shrink-0 text-black/50">Customer</div>
+                  <div className="text-right font-medium text-black/80 sm:mt-1 sm:text-left break-words">
                     {customerName}
                   </div>
                 </div>
 
-                <div className="flex justify-between sm:block">
-                  <div className="text-black/50">Order Number</div>
-                  <div className="font-medium text-black/80">
+                <div className="flex items-start justify-between gap-4 sm:block">
+                  <div className="shrink-0 text-black/50">Order Number</div>
+                  <div className="text-right font-medium text-black/80 sm:mt-1 sm:text-left">
                     #{order.id.slice(0, 8)}
                   </div>
                 </div>
 
-                <div className="flex justify-between sm:block">
-                  <div className="text-black/50">Pick up Time</div>
-                  <div className="font-medium text-black/80">
+                <div className="flex items-start justify-between gap-4 sm:block">
+                  <div className="shrink-0 text-black/50">Pick up Time</div>
+                  <div className="text-right font-medium text-black/80 sm:mt-1 sm:text-left">
                     {formatPickupTime(order.pickupAt)}
                   </div>
                 </div>
 
-                <div className="flex justify-between sm:block">
-                  <div className="text-black/50">Subtotal</div>
-                  <div className="font-medium text-black/80">
+                <div className="flex items-start justify-between gap-4 sm:block">
+                  <div className="shrink-0 text-black/50">Subtotal</div>
+                  <div className="text-right font-medium text-black/80 sm:mt-1 sm:text-left tabular-nums">
                     {moneyFromCents(order.subtotalCents)}
                   </div>
                 </div>
               </div>
 
               <div>
-                <div className="text-sm font-semibold text-black/70 mb-3">
+                <div className="mb-3 text-sm font-semibold text-black/70">
                   Order Summary
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-4">
                   {order.lineItems.map((li) => (
-                    <div
-                      key={li.id}
-                      className="flex items-start justify-between gap-3"
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-black/5">
+                    <div key={li.id} className="flex items-start gap-3">
+                      <div className="flex min-w-0 flex-1 items-start gap-3">
+                        <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-black/5 sm:h-16 sm:w-16">
                           {li.itemImageUrlSnapshot ? (
                             <Image
                               src={cldImage(li.itemImageUrlSnapshot)}
                               alt={li.itemNameSnapshot}
                               fill
+                              sizes="64px"
                               className="object-cover"
                             />
                           ) : (
-                            <div className="h-full w-full grid place-items-center text-[11px] text-black/40">
+                            <div className="grid h-full w-full place-items-center text-[11px] text-black/40">
                               —
                             </div>
                           )}
                         </div>
 
-                        <div>
-                          <div className="text-sm font-medium text-black/80">
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-medium leading-5 text-black/80 break-words">
                             {li.qty} × {li.itemNameSnapshot}
                           </div>
 
                           {li.note ? (
-                            <div className="text-[12px] text-black/50">
+                            <div className="mt-1 text-[12px] leading-5 text-black/50 break-words">
                               Note: {li.note}
                             </div>
                           ) : null}
 
                           {li.options?.length ? (
-                            <div className="mt-1 text-[12px] text-black/45">
+                            <div className="mt-1 text-[12px] leading-5 text-black/45 break-words">
                               {li.options
                                 .map((op) => {
                                   const qty =
@@ -140,7 +143,7 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                         </div>
                       </div>
 
-                      <div className="text-sm font-semibold text-black/70">
+                      <div className="w-[88px] shrink-0 pt-[1px] text-right text-sm font-semibold text-black/70 tabular-nums sm:w-[96px]">
                         {moneyFromCents(li.lineSubtotalCentsSnapshot)}
                       </div>
                     </div>
@@ -148,21 +151,23 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                 </div>
 
                 <div className="mt-5 border-t border-black/10 pt-4 text-sm">
-                  <div className="flex justify-between text-black/60">
+                  <div className="flex items-center justify-between text-black/60">
                     <span>Subtotal</span>
-                    <span className="font-medium text-black/80">
+                    <span className="font-medium text-black/80 tabular-nums">
                       {moneyFromCents(order.subtotalCents)}
                     </span>
                   </div>
-                  <div className="mt-1 flex justify-between text-black/60">
+
+                  <div className="mt-1 flex items-center justify-between text-black/60">
                     <span>Tax</span>
-                    <span className="font-medium text-black/80">
+                    <span className="font-medium text-black/80 tabular-nums">
                       {moneyFromCents(order.taxCents)}
                     </span>
                   </div>
-                  <div className="mt-2 flex justify-between text-black/80">
+
+                  <div className="mt-2 flex items-center justify-between text-black/80">
                     <span className="font-semibold">Total</span>
-                    <span className="font-semibold">
+                    <span className="font-semibold tabular-nums">
                       {moneyFromCents(order.totalCents)}
                     </span>
                   </div>
@@ -170,16 +175,19 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
               </div>
 
               <div>
-                <div className="text-sm font-semibold text-black/70 mb-2">
+                <div className="mb-2 text-sm font-semibold text-black/70">
                   Store Address
                 </div>
-                <div className="text-sm text-black/60">{storeAddress}</div>
 
-                <div className="mt-3 rounded-xl overflow-hidden border border-black/10">
+                <div className="text-sm leading-6 text-black/60 break-words">
+                  {storeAddress}
+                </div>
+
+                <div className="mt-3 overflow-hidden rounded-xl border border-black/10">
                   <iframe
                     title="map"
                     src={googleMapsUrl}
-                    className="w-full h-52"
+                    className="h-48 w-full sm:h-52"
                     loading="lazy"
                   />
                 </div>
@@ -191,24 +199,24 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                     )}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-tenton-brown font-semibold hover:underline"
+                    className="font-semibold text-tenton-brown hover:underline"
                   >
                     Open in Google Maps
                   </a>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+              <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
                 <a
                   href={`tel:${phone}`}
-                  className="h-10 px-6 rounded-full bg-tenton-red text-white font-semibold text-sm grid place-items-center border border-tenton-red hover:bg-white hover:text-tenton-red"
+                  className="grid h-10 place-items-center rounded-full border border-tenton-red bg-tenton-red px-6 text-sm font-semibold text-white transition hover:bg-white hover:text-tenton-red"
                 >
                   Call Restaurant
                 </a>
 
                 <Link
                   href="/"
-                  className="h-10 px-6 rounded-full border border-tenton-brown text-tenton-brown font-semibold text-sm grid place-items-center hover:bg-tenton-brown hover:text-white"
+                  className="grid h-10 place-items-center rounded-full border border-tenton-brown px-6 text-sm font-semibold text-tenton-brown transition hover:bg-tenton-brown hover:text-white"
                 >
                   Go back home
                 </Link>
@@ -216,7 +224,7 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
             </div>
           </div>
 
-          <div className="h-10" />
+          <div className="h-8 sm:h-10" />
         </div>
       </div>
     </div>

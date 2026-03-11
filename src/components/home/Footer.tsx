@@ -1,4 +1,4 @@
-import { Facebook, Instagram } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -6,16 +6,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <a
-            href="https://facebook.com"
-            target="_blank"
-            aria-label="Facebook"
-            className="hover:opacity-80 transition"
-          >
-            <Facebook size={22} />
-          </a>
-
-          <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/tenton_ramen_tonkatsu/"
             target="_blank"
             aria-label="Instagram"
             className="hover:opacity-80 transition"
