@@ -56,7 +56,7 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                     className="stroke-[3] text-white sm:size-[14px]"
                   />
                 </span>
-                <span className="text-base font-semibold leading-tight sm:text-2xl md:text-[26px]">
+                <span className="text-base font-semibold leading-tight sm:text-3xl md:text-[26px] text-tenton-red">
                   Your Order is Confirmed
                 </span>
               </div>
