@@ -85,12 +85,12 @@ export default function ConfirmedPageClient({ order }: { order: OrderDTO }) {
                   </div>
                 </div>
 
-                <div className="flex items-start justify-between gap-4 sm:block">
+                {/* <div className="flex items-start justify-between gap-4 sm:block">
                   <div className="shrink-0 text-black/50">Subtotal</div>
                   <div className="text-right font-medium text-black/80 sm:mt-1 sm:text-left tabular-nums">
                     {moneyFromCents(order.subtotalCents)}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div>

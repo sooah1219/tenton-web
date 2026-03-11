@@ -75,12 +75,17 @@ export default async function ReservationConfirmedPage({
       <div className="px-4 py-10">
         <div className="mx-auto max-w-3xl">
           <div className="rounded-xl border border-black/10 bg-white shadow-sm">
-            <div className="border-b border-black/10 px-6 pb-4 pt-6 text-center">
-              <div className="inline-flex items-center gap-2 text-[26px] font-semibold text-tenton-red">
-                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-tenton-red">
-                  <Check size={14} className="stroke-[3] text-white" />
+            <div className="border-b border-black/10 px-6 py-6 text-center">
+              <div className="flex items-center justify-center gap-2">
+                <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-tenton-red sm:h-6 sm:w-6">
+                  <Check
+                    size={12}
+                    className="stroke-[3] text-white sm:size-[14px]"
+                  />
                 </span>
-                <span>Your Reservation is Confirmed</span>
+                <span className="text-base font-semibold leading-tight sm:text-2xl md:text-[26px]">
+                  Your Reservation is Confirmed
+                </span>
               </div>
 
               <div className="mt-2 text-sm text-black/50">
@@ -117,7 +122,7 @@ export default async function ReservationConfirmedPage({
                     <div className="font-medium text-black/80">{r.phone}</div>
                   </div>
 
-                  <div className="flex justify-between sm:block">
+                  <div className="flex justify-between sm:block sm:col-span-2">
                     <div className="text-black/50">Email</div>
                     <div className="font-medium text-black/80">{r.email}</div>
                   </div>
@@ -165,14 +170,14 @@ export default async function ReservationConfirmedPage({
               <div className="flex flex-col justify-center gap-3 pt-2 sm:flex-row">
                 <a
                   href={`tel:${phone}`}
-                  className="grid h-10 place-items-center rounded-full border border-tenton-red bg-tenton-red px-6 text-sm font-semibold text-white hover:bg-white hover:text-tenton-red"
+                  className="grid h-10 place-items-center rounded-full border border-tenton-red bg-tenton-red px-6 text-sm font-semibold text-white transition hover:bg-white hover:text-tenton-red"
                 >
                   Call Restaurant
                 </a>
 
                 <Link
                   href="/"
-                  className="grid h-10 place-items-center rounded-full border border-tenton-brown px-6 text-sm font-semibold text-tenton-brown hover:bg-tenton-brown hover:text-white"
+                  className="grid h-10 place-items-center rounded-full border border-tenton-brown px-6 text-sm font-semibold text-tenton-brown transition hover:bg-tenton-brown hover:text-white"
                 >
                   Go back home
                 </Link>
